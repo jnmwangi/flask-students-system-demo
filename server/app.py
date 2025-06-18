@@ -1,5 +1,6 @@
 from flask import Flask, send_file, request, jsonify
-from models import db, Student
+from models import Student
+from models.database import db
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 
