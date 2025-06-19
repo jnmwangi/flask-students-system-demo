@@ -3,7 +3,8 @@ from models.database import db
 from flask_migrate import Migrate
 from controllers import controller
 from dotenv import load_dotenv
-from models import Student, Course, Enrollment
+from controllers import controller
+from models import Student, Course, Enrollment, User
 
 load_dotenv()
 
@@ -13,6 +14,19 @@ app.config.from_prefixed_env()
 db.init_app(app)
 migration = Migrate(app, db)
 
+bp = controller("student", Student)
+app.register_blueprint(bp, url_prefix="/students")
+
+cbp = controller("course", Course)
+app.register_blueprint(cbp, url_prefix="/courses")
+
+ebp = controller("enrollment", Enrollment)
+app.register_blueprint(ebp, url_prefix="/enrollments")
+
+ebp = controller("user", User)
+app.register_blueprint(ebp, url_prefix="/users")
+
+
 @app.route("/", methods=["GET"])
 def home():
     return "Nyumbani"
@@ -20,7 +34,8 @@ def home():
 crud_routes = [
     { "name": "students", "model": Student },
     { "name": "courses", "model": Course },
-    { "name": "enrollment", "model": Enrollment }
+    { "name": "enrollments", "model": Enrollment },
+    { "name": "users", "model": User }
 ]
 
 for route in crud_routes:

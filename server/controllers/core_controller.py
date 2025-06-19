@@ -1,4 +1,6 @@
 from flask_restful import Resource
+from flask import request,jsonify
+from models.database import db
 
 class CoreController(Resource):
 
@@ -30,5 +32,13 @@ class CoreControllerOne(Resource):
         return one.to_dict(), 200
     
     def patch(self, id):
+        one = self.Model.query.filter_by(id=id).first()
+        data= request.get_json()
+        for attr ,value in data.items():
+            if hasattr(one, attr):
+                setattr(one,attr, value)
+
+        db.session.commit()
+        return jsonify(one.to_dict())
 
         return "Patch"
