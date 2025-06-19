@@ -14,19 +14,6 @@ app.config.from_prefixed_env()
 db.init_app(app)
 migration = Migrate(app, db)
 
-bp = controller("student", Student)
-app.register_blueprint(bp, url_prefix="/students")
-
-cbp = controller("course", Course)
-app.register_blueprint(cbp, url_prefix="/courses")
-
-ebp = controller("enrollment", Enrollment)
-app.register_blueprint(ebp, url_prefix="/enrollments")
-
-ebp = controller("user", User)
-app.register_blueprint(ebp, url_prefix="/users")
-
-
 @app.route("/", methods=["GET"])
 def home():
     return "Nyumbani"
