@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+*{
+  box-sizing: border-box;
+}
+
+html, body, #root{
+  height: 100%;
+  @apply bg-gray-200;
+}
+
+button{
+  cursor: pointer;
+  @apply px-3 py-2 rounded;
+}
+
+button.button-primary{
+  @apply bg-sky-500 text-shadow-2xs text-shadow-gray-300;
+}
+
+input{
+  @apply border-2 border-gray-200 p-2 rounded bg-white;
+}
+
+.form-control{
+  @apply my-3 flex flex-col gap-1
+}
+
+.card{
+  @apply p-5 rounded border-2 border-gray-100 shadow-md bg-white
+}
+
+.card:has(.card-title){
+  @apply py-2 pb-10
+}
+
+.card h3.card-title{
+  @apply text-2xl;
+}
+
+.mask-image-left{
+  @apply mask-radial-[100%_100%] mask-radial-from-75% mask-radial-at-left
+}
+
+hr.divider{
+  @apply border-gray-200;
+}
