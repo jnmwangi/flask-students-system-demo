@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react"
+
+const BASEAPIURL = import.meta.env.VITE_BASEAPIURL
+
 export default function Courses() {
+
+    const [courses, setCourses] = useState([]);
+    useEffect(()=>{
+        fetch(`${BASEAPIURL}/api/courses`, {
+            headers:{
+                "Content-Type":"application/json",
+                Authorization: `Bearer ${btoa(sessionStorage.getItem("access_token"))}`
+            }
+        })
+        .then(r=>r.json())
+        .then(console.log)
+        .catch(console.log)
+
+    }, [])
+
     return (
         <div className="p-5 px-10 flex flex-col gap-3">
             <div className="flex justify-between py-3 py-3">
